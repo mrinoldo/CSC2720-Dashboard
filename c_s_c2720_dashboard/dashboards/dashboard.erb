@@ -1,0 +1,28 @@
+<script type='text/javascript'>
+ $(function() {
+   Dashing.gridsterLayout('[{"col":1,"row":1,"size_x":2,"size_y":1},{"col":3,"row":2,"size_x":1,"size_y":1},{"col":1,"row":2,"size_x":2,"size_y":1},{"col":3,"row":1,"size_x":1,"size_y":1}]')
+ });
+ </script>
+
+<% content_for :title do %>3ci dashboard<% end %>
+<div class="gridster">
+ <ul>
+<li data-row="1" data-col="1" data-sizex="2" data-sizey="1">
+  <div data-id="downloads-per-month" data-view ="LineChart" data-left-margin="5" data-top-margin="10"></div>
+</li>
+
+<li data-row="1" data-col="3" data-sizex="1" data-sizey="1">
+  <div data-id="os-marketshare" data-view ="PieChart" data-title="" data-moreinfo=""></div>
+</li>
+
+<li data-row="2" data-col="1" data-sizex="2" data-sizey="1">
+  <div data-id="regions" data-view ="BarChart" data-title="" data-moreinfo=""></div>
+</li>
+
+<li data-row="1" data-col="1" data-sizex="1" data-sizey="1">
+      <div data-id="valuation" data-view="Number" data-title="Current Valuation" data-moreinfo="In billions" data-prefix="$"></div>
+    </li>
+
+
+</ul>
+</div>
