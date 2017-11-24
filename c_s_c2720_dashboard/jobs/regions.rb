@@ -10,6 +10,9 @@ client_options = {
 
 client = Mongo::Client.new(client_host, client_options)
 
+SCHEDULER.every '30s', :first_in => 0 do |job|
+
+
 region = []
 
 client[:users].find()
@@ -47,7 +50,5 @@ scales: {
     }]
 }
 }
-
-# SCHEDULER.every '10m', :first_in => 0 do |job|
 send_event('regions', {labels: labels, datasets: data, options: options })
-# end
+ end
