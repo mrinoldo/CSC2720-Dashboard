@@ -15,7 +15,7 @@ client = Mongo::Client.new(client_host, client_options)
 
 date = []
 
-client[:users].find({"date" => {"$gt" => 1483228800 } })
+client[:users].find({"date" => {"$gt" => 1483228800 } }) # this date is 01/01/2017
 .projection({'date' => 1, '_id' => 0})
 .each { |item|
 date = date.push(item['date'])}

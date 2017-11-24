@@ -1,9 +1,13 @@
 current_valuation = 0
-current_karma = 0
 
-SCHEDULER.every '10s' do
+SCHEDULER.every '30s' do
   last_valuation = current_valuation
-  current_valuation = rand(100)
+
+  loop do 
+  current_valuation += rand(10)
+  current_valuation -= rand(5)
+  break if current_valuation >= 10
+end 
 
   send_event('valuation', { current: current_valuation, last: last_valuation })
 end
