@@ -1,14 +1,19 @@
 require 'mongo'
+require 'dotenv'
+Dotenv.load
+
 Mongo::Logger.logger.level = ::Logger::FATAL
 
-client_host = ['ds259085.mlab.com:59085']
-client_options = {
-  database: 'csc2720',
-  user: 'csc2720',
-  password: 'csc2720project',
-}
+# client_host = ['ds259085.mlab.com:59085']
+# client_options = {
+#   database: 'csc2720',
+#   user: 'csc2720',
+#   password: 'csc2720project',
+# }
 
-client = Mongo::Client.new(client_host, client_options)
+# client = Mongo::Client.new(client_host, client_options)
+client = Mongo::Client.new(ENV['MONGOLAB_URI'])
+
 
 SCHEDULER.every '30s', :first_in => 0 do |job|
 

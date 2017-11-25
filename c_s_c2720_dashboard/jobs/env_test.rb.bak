@@ -1,0 +1,13 @@
+require 'mongo'
+require 'dotenv'
+Dotenv.load
+
+Mongo::Logger.logger.level = ::Logger::FATAL
+
+client = Mongo::Client.new(ENV['MONGOLAB_URI'])
+collection = client[:users]
+
+ios = collection.find({os: "iOS"}).count()
+puts ios
+
+
