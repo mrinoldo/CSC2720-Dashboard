@@ -1,16 +1,14 @@
-require 'mongo'
+require 'mongo'                                 # used to connect to our mongodb database
+require 'dotenv'                                # used to load environment variable for database credentials
 
+Dotenv.load                                     # load environment variable that contains credentials to 
+                                                # connect to database
 Mongo::Logger.logger.level = ::Logger::FATAL
-
-client_host = ['ds259085.mlab.com:59085']
-client_options = {
-  database: 'csc2720',
-  user: 'csc2720',
-  password: 'csc2720project',
-}
-
-client = Mongo::Client.new(client_host, client_options)
+client = Mongo::Client.new(ENV['MONGOLAB_URI']) # connect to database
 collection = client[:users]
+
+# hard code an array of 200 documents to add to database one by one during presentation
+# all prior data was added much more efficiently using mongoimport and CSV files
 
 docs = [  {username:'cpinckney0', os:'iOS',region:'South America',date:1511968064},
   {username:'ggowar1', os:'Android',region:'Africa',date:1511893689},
@@ -213,8 +211,8 @@ docs = [  {username:'cpinckney0', os:'iOS',region:'South America',date:151196806
   {username:'amuttock5i', os:'iOS',region:'Africa',date:1511896322},
   {username:'bklement5j', os:'iOS',region:'Africa',date:1511834322}]
 
-docs.each do |doc|
-  sleep(10)
+docs.each do |doc|              # every 10s, add a document to the database so that the dashboard can update in real time
+  sleep(10)                     # and it appears that our userbase is growing steadily
   collection.insert_one(doc)
   puts 'Added user'
 end
