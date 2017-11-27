@@ -4,6 +4,13 @@
  });
  </script>
 
+ <script type='text/javascript'>
+var isIE = window.ActiveXObject ? true : false;
+if(isIE) {
+   alert("This Dashboard does not function correctly on Internet Explorer, please use Firefox or Chrome to view it!");
+}
+</script>
+
 <% content_for :title do %>CSC2720 Dashboard<% end %>
 <div class="gridster">
  <ul>
